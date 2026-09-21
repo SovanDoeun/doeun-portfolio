@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #F6F5F1;
+  --bg-raised: #FFFFFF;
+  --text: #12151C;
+  --text-muted: #55595F;
+  --line: rgba(18, 21, 28, 0.12);
+  --accent: #3D6B5C;
+  --accent-light: #527C6E;
+  --brass: #C9A15A;
+}
+
+html.dark {
+  --bg: #0D1017;
+  --bg-raised: #151922;
+  --text: #F2F1EC;
+  --text-muted: #9BA0A8;
+  --line: rgba(246, 245, 241, 0.14);
+  --accent: #6FA593;
+  --accent-light: #85B8A6;
+  --brass: #D8B87A;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::selection {
+  background-color: var(--accent);
+  color: var(--bg);
+}
+
+.section-rule {
+  border-top: 1px solid var(--line);
+}
+
+.module-card {
+  border: 1px solid var(--line);
+  background-color: var(--bg-raised);
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* thin schematic connector line used decoratively */
+.schematic-line {
+  stroke: var(--line);
+}
