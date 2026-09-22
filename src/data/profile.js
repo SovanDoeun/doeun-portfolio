@@ -21,7 +21,7 @@ const profile = {
   },
 
   // Replace with your real profile photo at /public/images/profile.jpg
-  profileImage: '/images/Card 4x6.jpg',
+  profileImage: '/images/hoemVandoeun.jpg',
 
   // CV file — put the actual PDF at this path in /public
   cvPath: '/cv/HomVandoeun.pdf',
