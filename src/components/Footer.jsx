@@ -55,7 +55,7 @@ export default function Footer() {
         )}
       </div>
       <div className="max-w-6xl mx-auto px-6 pb-8 text-xs text-[var(--text-muted)]">
-        © 2026 {profile.name}. All rights reserved.
+        © 2026 {profile.fullName}. All rights reserved.
       </div>
     </footer>
   )

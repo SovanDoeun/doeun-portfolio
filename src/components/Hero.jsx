@@ -20,7 +20,7 @@ export default function Hero() {
       <div className="grid md:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
         <motion.div variants={container} initial="hidden" animate="visible">
           <motion.p variants={item} className="text-[var(--accent)] font-mono text-sm mb-4">
-            Hi, I'm {profile.name}
+            Hi, I'm {profile.name} <span className="text-[var(--text-muted)]">({profile.fullName})</span>
           </motion.p>
           <motion.h1 variants={item} className="font-display font-semibold text-4xl sm:text-5xl leading-[1.1] mb-6">
             {profile.role}
