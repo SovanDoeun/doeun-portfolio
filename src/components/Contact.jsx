@@ -14,7 +14,7 @@ const socials = [
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
   const [errors, setErrors] = useState({})
-  const [status, setStatus] = useState('idle') // idle | sent
+  const [status, setStatus] = useState('idle') // idle | sending | sent | error
 
   const validate = () => {
     const next = {}
@@ -26,14 +26,35 @@ export default function Contact() {
     return Object.keys(next).length === 0
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (!validate()) return
-    // Frontend UI only — wire this up to your backend/API or an email
-    // service (e.g. Formspree, EmailJS) to actually send messages.
-    console.log('Contact form submitted:', form)
-    setStatus('sent')
-    setForm({ name: '', email: '', subject: '', message: '' })
+
+    if (!profile.formspreeEndpoint) {
+      // No endpoint configured yet — add one at src/data/profile.js
+      // (formspreeEndpoint) to actually deliver messages.
+      console.log('Contact form submitted (no Formspree endpoint set):', form)
+      setStatus('sent')
+      setForm({ name: '', email: '', subject: '', message: '' })
+      return
+    }
+
+    setStatus('sending')
+    try {
+      const res = await fetch(profile.formspreeEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (res.ok) {
+        setStatus('sent')
+        setForm({ name: '', email: '', subject: '', message: '' })
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
   }
 
   const activeSocials = socials.filter((s) => profile.links[s.key])
@@ -81,14 +102,22 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="inline-flex items-center gap-2 px-5 py-3 bg-[var(--accent)] text-[var(--bg)] rounded-md text-sm font-medium hover:bg-[var(--accent-light)] transition-colors focus-ring"
+                disabled={status === 'sending'}
+                className="inline-flex items-center gap-2 px-5 py-3 bg-[var(--accent)] text-[var(--bg)] rounded-md text-sm font-medium hover:bg-[var(--accent-light)] transition-colors focus-ring disabled:opacity-60"
               >
-                Send Message <Send size={16} />
+                {status === 'sending' ? 'Sending…' : 'Send Message'} <Send size={16} />
               </button>
 
               {status === 'sent' && (
                 <p className="text-sm text-[var(--accent)] pt-1" role="status">
-                  Message ready — connect this form to your backend or email service to deliver it.
+                  {profile.formspreeEndpoint
+                    ? 'Message sent — thanks for reaching out!'
+                    : 'Message ready — add a Formspree endpoint in src/data/profile.js to actually deliver it.'}
+                </p>
+              )}
+              {status === 'error' && (
+                <p className="text-sm text-red-400 pt-1" role="status">
+                  Something went wrong sending your message — please try again or email me directly.
                 </p>
               )}
             </form>

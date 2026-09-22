@@ -26,6 +26,11 @@ const profile = {
   // CV file — put the actual PDF at this path in /public
   cvPath: '/cv/HomVandoeun.pdf',
 
+  // Contact form — create a form at https://formspree.io and paste your
+  // endpoint here, e.g. 'https://formspree.io/f/xxxxxxxx'. Leave blank to
+  // keep the form in local-only (no email sent) mode.
+  formspreeEndpoint: 'https://formspree.io/f/mrpbqlzj',
+
   // Replace placeholders with your real links when ready.
   // Leave blank ('') to hide a link from Contact/Footer.
   links: {
