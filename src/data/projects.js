@@ -37,7 +37,7 @@ export const featuredProject = {
     'Coordinating a self-registration flow that correctly links parent and child accounts by phone number, and keeping the mobile client and API in sync as features and method signatures evolved.',
   results:
     'A working end-to-end system with role-based dashboards for all four user types, live attendance tracking, and a self-service registration flow — developed as an ongoing university project.',
-  screenshots: [], // e.g. ['/images/projects/sms-dashboard.jpg', ...]
+  screenshots: ['/images/projects/formlogin.jpg',], // e.g. ['/images/projects/sms-dashboard.jpg', ...]
   github: '',
   demo: '',
   demoVideo: '',
@@ -49,7 +49,7 @@ export const projects = [
     name: 'School Management System',
     short: 'Full-stack mobile system for managing students, teachers, attendance, grades, and more.',
     technologies: ['Flutter', 'Node.js', 'MySQL'],
-    image: '',
+    image: '/images/projects/sigin.jpg',
     github: '',
     demo: '',
     featured: true,
