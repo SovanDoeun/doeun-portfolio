@@ -39,7 +39,7 @@ const profile = {
     linkedin: "",
     facebook: "https://www.facebook.com/share/1AuTA9YVYb/?mibextid=wwXIfr",
     telegram: "https://t.me/HoemVandoeun",
-    email: "mailto:doeunhoem@email.com",
+    email: "mailto:doeunhoem@gmail.com",
   },
 };
 
